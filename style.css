@@ -1,0 +1,2777 @@
+/* =========================================================
+
+   AISHA & IBRAHIM — LUXURY WEDDING INVITATION
+
+   Refined stylesheet
+
+   Keep your existing index.html and script.js.
+
+========================================================= */
+
+
+
+/* 1. DESIGN TOKENS + RESET */
+
+:root {
+
+    --navy: #071d32;
+
+    --navy-deep: #041321;
+
+    --navy-card: rgba(5, 25, 43, 0.78);
+
+    --ivory: #fffaf0;
+
+    --ivory-warm: #f4e7cc;
+
+    --champagne: #f2d49b;
+
+    --gold: #c5a36d;
+
+    --gold-deep: #9d7139;
+
+    --gold-light: #f5dfb3;
+
+    --text-light: #f8edda;
+
+    --text-muted: #e8dfd0;
+
+    --shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+
+}
+
+
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+
+body {
+
+    min-height: 100vh;
+
+    min-height: 100svh;
+
+    position: relative;
+
+    overflow-x: hidden;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: var(--text-light);
+
+    background:
+
+        linear-gradient(rgba(5, 20, 37, 0.16), rgba(5, 20, 37, 0.16)),
+
+        url("floral-background.jpeg") center / cover no-repeat fixed;
+
+}
+
+
+
+button,
+
+input,
+
+select,
+
+textarea {
+
+    font: inherit;
+
+}
+
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+
+/* 2. OPTIONAL FLORAL CORNER DECORATIONS */
+
+.floral-corner {
+
+    position: fixed;
+
+    z-index: 0;
+
+    color: #d8bd8a;
+
+    opacity: 0.55;
+
+    pointer-events: none;
+
+    font-size: 90px;
+
+    line-height: 1;
+
+    text-shadow: 0 0 15px rgba(216, 189, 138, 0.15);
+
+}
+
+
+
+.top-left { top: 15px; left: 20px; transform: rotate(-25deg); }
+
+.top-right { top: 15px; right: 20px; transform: rotate(25deg); }
+
+.bottom-left { bottom: 15px; left: 20px; transform: rotate(25deg); }
+
+.bottom-right { bottom: 15px; right: 20px; transform: rotate(-25deg); }
+
+
+
+/* 3. FIRST / ENVELOPE SCREEN */
+
+.invitation-container {
+
+    width: 100%;
+
+    max-width: 760px;
+
+    min-height: 100vh;
+
+    min-height: 100svh;
+
+    margin: 0 auto;
+
+    padding: 35px 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 1;
+
+    transition: opacity 1s ease, transform 1s ease;
+
+}
+
+
+
+.invitation-container.is-leaving {
+
+    opacity: 0;
+
+    transform: translateY(-20px);
+
+    pointer-events: none;
+
+}
+
+
+
+.top-decoration {
+
+    color: #d7b77e;
+
+    font-size: 23px;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+.welcome-text {
+
+    color: #ead5ac;
+
+    font-size: 19px;
+
+    margin-bottom: 5px;
+
+}
+
+
+
+/* 4. ENVELOPE BODY */
+
+.envelope {
+
+    width: min(420px, 88vw);
+
+    height: 275px;
+
+    position: relative;
+
+    flex: 0 0 auto;
+
+    margin: 55px auto 65px;
+
+    perspective: 1400px;
+
+    transform-style: preserve-3d;
+
+    isolation: isolate;
+
+    border: 1px solid #d6b875;
+
+    border-radius: 5px;
+
+    box-shadow:
+
+        0 18px 38px rgba(0, 0, 0, 0.34),
+
+        0 0 16px rgba(218, 180, 112, 0.2);
+
+}
+
+
+
+/* Envelope back panel */
+
+.envelope-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 0;
+
+    border: 1px solid #f3dfb5;
+
+    border-radius: 4px;
+
+    background: linear-gradient(145deg, #fff7e7 0%, #e8d2a9 55%, #d8bd8a 100%);
+
+    box-shadow:
+
+        inset 0 0 18px rgba(255, 255, 255, 0.28),
+
+        0 15px 35px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+/* 5. INVITATION LETTER */
+
+.letter {
+
+    position: absolute;
+
+    left: 6%;
+
+    bottom: 10px;
+
+    width: 88%;
+
+    min-height: 220px;
+
+    padding: 18px 16px 20px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    color: #183653;
+
+    z-index: 2;
+
+    background:
+
+        linear-gradient(145deg, #fffdf7 0%, #fff8e9 58%, #f1e2c2 100%);
+
+    border: 1px solid #d6b875;
+
+    box-shadow:
+
+        0 16px 36px rgba(0, 0, 0, 0.28),
+
+        inset 0 0 0 5px #fffdf6,
+
+        inset 0 0 0 6px #e7d1a5;
+
+    transform: translateY(0);
+
+    transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+
+    will-change: transform;
+
+}
+
+
+
+.letter-bismillah {
+
+    color: #183653;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-bottom: 8px;
+
+}
+
+
+
+.letter-flower {
+
+    color: #b18a48;
+
+    font-size: 19px;
+
+    margin-bottom: 5px;
+
+}
+
+
+
+.letter h2 {
+
+    color: #b18a48;
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+
+    line-height: 1.25;
+
+    margin: 5px 0 7px;
+
+}
+
+
+
+.letter h1 {
+
+    color: #183653;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(21px, 4vw, 29px);
+
+    line-height: 1.2;
+
+    margin: 5px 0 7px;
+
+}
+
+
+
+.letter h1 span {
+
+    color: #b18a48;
+
+}
+
+
+
+.gold-divider {
+
+    color: #b18a48;
+
+    font-size: 16px;
+
+    margin: 7px 0;
+
+}
+
+
+
+.invitation-text {
+
+    color: #34495e;
+
+    font-family: Georgia, serif;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+
+    margin: 7px auto 0;
+
+    padding: 0 5px;
+
+    max-width: 330px;
+
+}
+
+
+
+/* 6. ENVELOPE FRONT FOLD */
+
+.envelope-front {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    background: linear-gradient(135deg, #f3dfb9 0%, #ddc49a 45%, #c9a875 100%);
+
+    clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+
+    filter: drop-shadow(0 -2px 3px rgba(128, 96, 57, 0.2));
+
+}
+
+
+
+/* 7. ENVELOPE TOP FLAP */
+
+.envelope-flap {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 4;
+
+    background: linear-gradient(145deg, #f0d9a8 0%, #c9a46a 48%, #a77d43 100%);
+
+    clip-path: polygon(0 0, 100% 0, 50% 55%);
+
+    transform-origin: top center;
+
+    transform: rotateX(0deg);
+
+    backface-visibility: hidden;
+
+    transition: transform 0.95s ease-in-out;
+
+    filter: drop-shadow(0 3px 4px rgba(118, 85, 44, 0.22));
+
+}
+
+
+
+/* 8. WAX-SEAL BUTTON + USER'S SEAL IMAGE
+
+   The image should be inside the .seal button in your HTML.
+
+   Example: \<button id="openButton" class="seal">\<img ...>\<span class="seal-monogram">A ♥ I\</span>\</button>
+
+*/
+
+.seal {
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    width: 118px;
+
+    height: 118px;
+
+    padding: 0;
+
+    margin: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transform: translate(-50%, -50%);
+
+    border: 0;
+
+    border-radius: 50%;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #80501f;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.25);
+
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.4s ease;
+
+}
+
+
+
+.seal img {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+    filter: drop-shadow(0 4px 5px rgba(74, 43, 12, 0.25));
+
+}
+
+
+
+.seal-monogram {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    z-index: 2;
+
+    transform: translate(-50%, -50%);
+
+    color: #80501f;
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    text-shadow: 0 1px 2px rgba(255, 240, 197, 0.8);
+
+    pointer-events: none;
+
+}
+
+
+
+.seal:hover:not(:disabled) {
+
+    transform: translate(-50%, -50%) scale(1.06);
+
+    filter: brightness(1.05);
+
+}
+
+
+
+.seal:active:not(:disabled) {
+
+    transform: translate(-50%, -50%) scale(0.97);
+
+}
+
+
+
+.seal:focus-visible {
+
+    outline: 2px solid #fff0c9;
+
+    outline-offset: 6px;
+
+}
+
+
+
+.seal:disabled {
+
+    cursor: default;
+
+}
+
+
+
+.envelope.flap-open .seal {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+
+/* 9. OPENING ANIMATION */
+
+.envelope.flap-open .envelope-flap {
+
+    transform: rotateX(180deg);
+
+    z-index: 1;
+
+}
+
+
+
+.envelope.letter-out .letter {
+
+    transform: translateY(-205px);
+
+    z-index: 6;
+
+}
+
+
+
+/* 10. WELCOME SCREEN TYPOGRAPHY + OPEN BUTTON */
+
+.invitation-heading { margin-top: 5px; }
+
+
+
+.small-heading {
+
+    color: #d7bd91;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+
+}
+
+
+
+.main-title {
+
+    color: #e5c58c;
+
+    font-size: clamp(27px, 4vw, 36px);
+
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.heading-decoration {
+
+    color: #d8b77b;
+
+    margin: 10px 0;
+
+    font-size: 17px;
+
+}
+
+
+
+.subtitle {
+
+    color: #e7dfd0;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    margin: 12px 0 25px;
+
+}
+
+
+
+button:not(.seal) {
+
+    padding: 14px 30px;
+
+    background: linear-gradient(135deg, #f2d49b, #c5a36d);
+
+    border: 1px solid #f4dfad;
+
+    border-radius: 35px;
+
+    color: #102b48;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+
+button:not(.seal):hover:not(:disabled) {
+
+    background: #f4dfad;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+button:disabled {
+
+    cursor: default;
+
+    opacity: 0.85;
+
+}
+
+
+
+.footer-note {
+
+    color: #d8bd8a;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    margin-top: 24px;
+
+}
+
+
+
+/* 11. FULL-SCREEN WEDDING PAGE */
+
+.wedding-page {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    height: 100dvh;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 42px 20px;
+
+    background:
+
+        linear-gradient(rgba(4, 19, 34, 0.22), rgba(4, 19, 34, 0.34)),
+
+        url("floral-background.jpeg") center / cover no-repeat;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 20;
+
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+
+    -webkit-overflow-scrolling: touch;
+
+}
+
+
+
+.wedding-page.is-visible {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+
+.wedding-content {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background: transparent;
+
+    border: 0;
+
+    box-shadow: none;
+
+    animation: invitationAppear 1.5s ease both;
+
+}
+
+
+
+@keyframes invitationAppear {
+
+    from { opacity: 0; transform: translateY(30px); }
+
+    to { opacity: 1; transform: translateY(0); }
+
+}
+
+
+
+/* 12. WEDDING PAGE TYPOGRAPHY */
+
+.page-ornament {
+
+    color: #d9b778;
+
+    font-size: 25px;
+
+    letter-spacing: 7px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.page-bismillah {
+
+    color: #f0d5a4;
+
+    font-size: 24px;
+
+    line-height: 1.6;
+
+    margin-bottom: 30px;
+
+}
+
+
+
+.invitation-label {
+
+    color: #e5c58c;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.couple-names {
+
+    color: #f0d09a;
+
+    font-size: clamp(40px, 7vw, 68px);
+
+    font-weight: normal;
+
+    line-height: 1.3;
+
+    letter-spacing: 1px;
+
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+.couple-names span {
+
+    color: #fff0d0;
+
+    font-style: italic;
+
+    padding: 0 10px;
+
+}
+
+
+
+.gold-flourish {
+
+    color: #d9b778;
+
+    font-size: 22px;
+
+    margin: 15px 0 25px;
+
+}
+
+
+
+.celebration-title {
+
+    color: #f6e5c8;
+
+    font-size: 21px;
+
+    font-weight: normal;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+.celebration-message {
+
+    max-width: 560px;
+
+    margin: 0 auto;
+
+    color: #e8dfd0;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+}
+
+
+
+.details-divider {
+
+    color: #d8b579;
+
+    letter-spacing: 4px;
+
+    margin: 35px 0;
+
+}
+
+
+
+/* 13. WEDDING DETAILS */
+
+.wedding-details {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    flex-wrap: wrap;
+
+}
+
+
+
+.detail-item {
+
+    min-width: 220px;
+
+    padding: 15px;
+
+}
+
+
+
+.detail-icon {
+
+    color: #dfbd81;
+
+    font-size: 30px;
+
+}
+
+
+
+.detail-item h3 {
+
+    color: #e8c991;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    margin: 15px 0;
+
+}
+
+
+
+.detail-item p {
+
+    color: #e8dfd0;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+}
+
+
+
+/* 14. COUNTDOWN */
+
+.countdown-section {
+
+    width: 100%;
+
+    margin: 35px auto;
+
+}
+
+
+
+.countdown-heading {
+
+    color: #e8c991;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+.countdown-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+
+
+.countdown-box {
+
+    width: 105px;
+
+    min-height: 100px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: rgba(5, 25, 43, 0.72);
+
+    border: 1px solid #c5a36d;
+
+    border-radius: 8px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+
+}
+
+
+
+.countdown-box span {
+
+    color: #f0d09a;
+
+    font-size: 35px;
+
+    font-weight: bold;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+
+
+.countdown-box p {
+
+    color: #e8dfd0;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+}
+
+
+
+.countdown-date {
+
+    color: #f0d09a;
+
+    font-size: 16px;
+
+    font-style: italic;
+
+    margin-top: 22px;
+
+}
+
+
+
+/* 15. VENUE */
+
+.venue-section {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: 45px auto;
+
+    text-align: center;
+
+}
+
+
+
+.venue-label,
+
+.gallery-label,
+
+.programme-label,
+
+.rsvp-label {
+
+    color: #e5c58c;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+
+}
+
+
+
+.venue-section h2,
+
+.gallery-section h2,
+
+.programme-section h2,
+
+.rsvp-section h2 {
+
+    color: #f0d09a;
+
+    font-size: 34px;
+
+    font-weight: normal;
+
+    line-height: 1.25;
+
+}
+
+
+
+.venue-ornament,
+
+.gallery-ornament,
+
+.programme-ornament {
+
+    color: #d8b579;
+
+    margin: 15px 0 25px;
+
+}
+
+
+
+.venue-card {
+
+    padding: 35px 20px;
+
+    background: var(--navy-card);
+
+    border: 1px solid #c5a36d;
+
+    border-radius: 10px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+.venue-icon {
+
+    color: #e5c58c;
+
+    font-size: 38px;
+
+    margin-bottom: 12px;
+
+}
+
+
+
+.venue-card h3 {
+
+    color: #f0d09a;
+
+    font-size: 27px;
+
+    margin-bottom: 8px;
+
+}
+
+
+
+.venue-city,
+
+.venue-address {
+
+    color: #e8dfd0;
+
+    font-size: 15px;
+
+    line-height: 2;
+
+}
+
+
+
+.venue-divider {
+
+    color: #d8b579;
+
+    margin: 22px 0;
+
+}
+
+
+
+.venue-address { margin-bottom: 25px; }
+
+
+
+.venue-button {
+
+    display: inline-block;
+
+    padding: 14px 24px;
+
+    background: linear-gradient(135deg, #f2d49b, #c5a36d);
+
+    border: 1px solid #f5dfb3;
+
+    border-radius: 30px;
+
+    color: #102b48;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    transition: transform 0.3s ease, background 0.3s ease;
+
+}
+
+
+
+.venue-button:hover {
+
+    background: #fff0cf;
+
+    transform: translateY(-3px);
+
+}
+
+
+
+/* 16. PHOTO GALLERY */
+
+.gallery-section {
+
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 55px auto;
+
+    text-align: center;
+
+}
+
+
+
+.gallery-description {
+
+    color: #e8dfd0;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+
+}
+
+
+
+.gallery-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+
+}
+
+
+
+.gallery-photo {
+
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 8px;
+
+    overflow: hidden;
+
+    background: #102b49;
+
+    border: 1px solid #c5a36d;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.28);
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+}
+
+
+
+.gallery-photo:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
+
+}
+
+
+
+.gallery-photo img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 260px;
+
+    object-fit: cover;
+
+    border-radius: 3px;
+
+    transition: transform 0.5s ease;
+
+}
+
+
+
+.gallery-photo:hover img { transform: scale(1.04); }
+
+
+
+.photo-caption {
+
+    display: block;
+
+    color: #f0d09a;
+
+    font-size: 13px;
+
+    font-style: italic;
+
+    padding: 14px 5px 8px;
+
+}
+
+
+
+.gallery-footer {
+
+    color: #e5c58c;
+
+    font-size: 14px;
+
+    font-style: italic;
+
+    margin-top: 30px;
+
+}
+
+
+
+/* 17. GALLERY LIGHTBOX */
+
+.gallery-lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+
+    background: rgba(2, 12, 23, 0.94);
+
+    z-index: 1000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+}
+
+
+
+.gallery-lightbox.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+
+.gallery-lightbox img {
+
+    max-width: min(90%, 1100px);
+
+    max-height: 78vh;
+
+    object-fit: contain;
+
+    border: 2px solid #c5a36d;
+
+    border-radius: 5px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+
+}
+
+
+
+.gallery-lightbox p {
+
+    color: #f0d09a;
+
+    margin-top: 18px;
+
+    font-style: italic;
+
+    text-align: center;
+
+}
+
+
+
+.lightbox-close {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 25px;
+
+    width: 45px;
+
+    height: 45px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    border: 1px solid #e5c58c;
+
+    background: #c5a36d;
+
+    color: #102b48;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+}
+
+
+
+/* 18. WEDDING PROGRAMME / TIMELINE */
+
+.programme-section {
+
+    width: 100%;
+
+    max-width: 750px;
+
+    margin: 60px auto;
+
+    text-align: center;
+
+}
+
+
+
+.programme-description {
+
+    color: #e8dfd0;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+.programme-date {
+
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    color: #f0d09a;
+
+    border: 1px solid #c5a36d;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 40px;
+
+}
+
+
+
+.timeline {
+
+    position: relative;
+
+    max-width: 550px;
+
+    margin: 0 auto;
+
+    text-align: left;
+
+}
+
+
+
+.timeline::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 27px;
+
+    top: 15px;
+
+    bottom: 20px;
+
+    width: 1px;
+
+    background: linear-gradient(to bottom, transparent, #c5a36d, #c5a36d, transparent);
+
+}
+
+
+
+.timeline-item {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 22px;
+
+    margin-bottom: 35px;
+
+}
+
+
+
+.timeline-icon {
+
+    flex: 0 0 55px;
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #102b49;
+
+    border: 1px solid #c5a36d;
+
+    border-radius: 50%;
+
+    color: #f0d09a;
+
+    font-size: 23px;
+
+    z-index: 1;
+
+}
+
+
+
+.timeline-content {
+
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 17px 20px;
+
+    background: var(--navy-card);
+
+    border: 1px solid #b8955d;
+
+    border-radius: 7px;
+
+    transition: transform 0.3s ease;
+
+}
+
+
+
+.timeline-content:hover { transform: translateX(6px); }
+
+
+
+.timeline-time {
+
+    color: #e5c58c;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+}
+
+
+
+.timeline-content h3 {
+
+    color: #f0d09a;
+
+    font-size: 20px;
+
+    font-weight: normal;
+
+    margin: 9px 0;
+
+}
+
+
+
+.timeline-content p {
+
+    color: #e8dfd0;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+}
+
+
+
+.programme-footer {
+
+    color: #e5c58c;
+
+    font-style: italic;
+
+    font-size: 15px;
+
+    margin-top: 35px;
+
+}
+
+
+
+/* 19. RSVP */
+
+.rsvp-section {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    margin: 40px auto;
+
+    text-align: center;
+
+}
+
+
+
+.rsvp-section h2 { margin-bottom: 12px; }
+
+
+
+.rsvp-description {
+
+    color: #e8dfd0;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+#rsvpForm {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+
+
+#rsvpForm input,
+
+#rsvpForm select,
+
+#rsvpForm textarea {
+
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 14px 16px;
+
+    background: rgba(255, 250, 240, 0.96);
+
+    border: 1px solid #d8b77b;
+
+    border-radius: 5px;
+
+    color: #183653;
+
+    font-family: Georgia, serif;
+
+    font-size: 14px;
+
+    outline: none;
+
+}
+
+
+
+#rsvpForm input:focus,
+
+#rsvpForm select:focus,
+
+#rsvpForm textarea:focus {
+
+    border-color: #f5d18c;
+
+    box-shadow: 0 0 10px rgba(216, 183, 123, 0.35);
+
+}
+
+
+
+#rsvpForm textarea {
+
+    min-height: 90px;
+
+    resize: vertical;
+
+}
+
+
+
+.rsvp-button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    background: linear-gradient(135deg, #f2d49b, #c5a36d);
+
+    color: #102b48;
+
+    border: 1px solid #f5dfb3;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+}
+
+
+
+#rsvpMessage {
+
+    color: #f0d09a;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-top: 10px;
+
+}
+
+
+
+/* 20. CLOSING MESSAGE + BACK TO TOP */
+
+.closing-message {
+
+    color: #e8dfd0;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-top: 30px;
+
+}
+
+
+
+.closing-ornament {
+
+    color: #e6c48c;
+
+    font-size: 18px;
+
+    margin-top: 25px;
+
+    font-style: italic;
+
+}
+
+
+
+/* 21. TABLET ADJUSTMENTS */
+
+@media (max-width: 800px) {
+
+    .wedding-content { padding: 28px 18px; }
+
+    .gallery-grid { gap: 15px; }
+
+    .gallery-photo img { height: 220px; }
+
+    .wedding-details { gap: 18px; }
+
+}
+
+
+
+/* 22. MOBILE RESPONSIVENESS */
+
+@media (max-width: 600px) {
+
+    .invitation-container { padding: 24px 12px; }
+
+
+
+    .floral-corner {
+
+        font-size: 55px;
+
+        opacity: 0.42;
+
+    }
+
+
+
+    .top-left, .bottom-left { left: 5px; }
+
+    .top-right, .bottom-right { right: 5px; }
+
+
+
+    .welcome-text { font-size: 16px; }
+
+
+
+    .envelope {
+
+        width: min(340px, 88vw);
+
+        height: 225px;
+
+        margin: 48px auto 58px;
+
+    }
+
+
+
+    .letter {
+
+        min-height: 190px;
+
+        padding: 14px 10px 16px;
+
+    }
+
+
+
+    .letter h1 { font-size: clamp(20px, 6vw, 25px); }
+
+    .letter h2 { font-size: 15px; }
+
+    .letter-bismillah { font-size: 12px; }
+
+    .invitation-text { font-size: 11px; }
+
+
+
+    .seal { width: 100px; height: 100px; }
+
+    .seal-monogram { font-size: 16px; }
+
+
+
+    .envelope.letter-out .letter {
+
+        transform: translateY(-175px);
+
+    }
+
+
+
+    .main-title { font-size: 27px; }
+
+    .subtitle { font-size: 15px; }
+
+
+
+    .wedding-page {
+
+        padding: 24px 12px;
+
+        align-items: flex-start;
+
+    }
+
+
+
+    .wedding-content { padding: 28px 10px; }
+
+    .page-bismillah { font-size: 19px; }
+
+    .invitation-label { font-size: 10px; letter-spacing: 2px; }
+
+    .couple-names { font-size: clamp(36px, 10vw, 46px); }
+
+    .couple-names span { padding: 0 4px; }
+
+    .celebration-title { font-size: 18px; }
+
+    .celebration-message { font-size: 14px; line-height: 1.8; }
+
+
+
+    .wedding-details { gap: 12px; }
+
+    .detail-item { min-width: 100%; padding: 12px 8px; }
+
+    .details-divider { margin: 25px 0; }
+
+
+
+    .venue-section h2,
+
+    .gallery-section h2,
+
+    .programme-section h2,
+
+    .rsvp-section h2 { font-size: 28px; }
+
+
+
+    .venue-card { padding: 28px 15px; }
+
+    .venue-card h3 { font-size: 23px; }
+
+    .venue-button { font-size: 11px; padding: 13px 17px; }
+
+
+
+    .gallery-section { padding: 0 4px; }
+
+    .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+
+    .gallery-photo { padding: 6px; }
+
+    .gallery-photo img { height: 180px; }
+
+    .photo-caption { font-size: 11px; padding: 10px 3px 6px; }
+
+
+
+    .programme-section { padding: 0 4px; }
+
+    .programme-date { font-size: 10px; letter-spacing: 1px; padding: 11px 14px; }
+
+    .timeline { max-width: 100%; }
+
+    .timeline-item { gap: 12px; margin-bottom: 25px; }
+
+    .timeline-icon { flex-basis: 43px; width: 43px; height: 43px; font-size: 19px; }
+
+    .timeline::before { left: 21px; }
+
+    .timeline-content { padding: 14px 12px; }
+
+    .timeline-content h3 { font-size: 17px; }
+
+    .timeline-content p { font-size: 12px; }
+
+
+
+    .rsvp-section { padding: 0 5px; }
+
+    .rsvp-section h2 { font-size: 29px; }
+
+    #rsvpForm input,
+
+    #rsvpForm select,
+
+    #rsvpForm textarea { font-size: 16px; }
+
+
+
+    .countdown-container { gap: 8px; }
+
+    .countdown-box { width: 74px; min-height: 78px; gap: 6px; }
+
+    .countdown-box span { font-size: 26px; }
+
+    .countdown-box p { font-size: 9px; letter-spacing: 1px; }
+
+    .countdown-heading { font-size: 11px; letter-spacing: 2px; }
+
+    .countdown-date { font-size: 14px; }
+
+}
+
+
+
+@media (max-width: 380px) {
+
+    .envelope { height: 205px; }
+
+    .seal { width: 88px; height: 88px; }
+
+    .envelope.letter-out .letter { transform: translateY(-155px); }
+
+    .gallery-grid { grid-template-columns: 1fr; }
+
+    .gallery-photo img { height: 230px; }
+
+    .countdown-box { width: 68px; }
+
+    .timeline-item { gap: 9px; }
+
+}
+
+
+
+/* 23. SHORT LANDSCAPE SCREENS */
+
+@media (max-height: 650px) and (min-width: 601px) {
+
+    .invitation-container { padding-top: 15px; padding-bottom: 15px; }
+
+    .envelope { margin-top: 28px; margin-bottom: 42px; }
+
+}
+
+
+
+/* 24. REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+
+    *::before,
+
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+}
+
+
+
+#rsvpMessage {
+
+    margin-top: 22px;
+
+    padding: 18px;
+
+    border: 1px solid #c9a45c;
+
+    border-radius: 12px;
+
+    background: #fffaf0;
+
+    color: #071b36;
+
+    font-family: Georgia, serif;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    text-align: center;
+
+}
+
+
+
+#rsvpMessage strong {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #a47c36;
+
+    font-size: 20px;
+
+}
+
+
+
+/* RSVP BUTTON LOADING ANIMATION */
+
+
+
+.rsvp-button:disabled {
+
+    cursor: not-allowed;
+
+    opacity: 0.8;
+
+    transform: none;
+
+}
+
+
+
+.rsvp-button.is-loading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+}
+
+
+
+.loading-spinner {
+
+    width: 18px;
+
+    height: 18px;
+
+    border: 2px solid rgba(7, 27, 54, 0.25);
+
+    border-top-color: #071b36;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    animation: rsvpSpin 0.8s linear infinite;
+
+}
+
+
+
+@keyframes rsvpSpin {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   25. PREMIUM POLISH — NAVY, CHAMPAGNE & IVORY
+   Additive refinements: keeps existing HTML and JavaScript.
+========================================================= */
+
+:root {
+    --navy: #081b2d;
+    --navy-deep: #04111f;
+    --navy-card: rgba(5, 23, 40, 0.82);
+    --ivory: #fffaf1;
+    --ivory-warm: #f5ead6;
+    --champagne: #efd29b;
+    --gold: #c6a36a;
+    --gold-deep: #9f743b;
+    --gold-light: #f7e4bd;
+    --shadow: 0 18px 48px rgba(0, 0, 0, 0.30);
+}
+
+/* A soft vignette gives the floral background more depth. */
+body {
+    background-color: var(--navy-deep);
+    background-attachment: fixed;
+}
+
+.wedding-page {
+    background-color: var(--navy-deep);
+    background-attachment: scroll;
+    scrollbar-color: var(--gold) var(--navy-deep);
+    scrollbar-width: thin;
+}
+
+.wedding-page::-webkit-scrollbar {
+    width: 9px;
+}
+
+.wedding-page::-webkit-scrollbar-track {
+    background: var(--navy-deep);
+}
+
+.wedding-page::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--gold-light), var(--gold-deep));
+    border: 2px solid var(--navy-deep);
+    border-radius: 20px;
+}
+
+/* Envelope: softer highlight and a more tactile paper finish. */
+.envelope {
+    border-radius: 7px;
+    box-shadow:
+        0 24px 55px rgba(0, 0, 0, 0.42),
+        0 0 0 5px rgba(231, 204, 157, 0.06),
+        0 0 28px rgba(218, 180, 112, 0.16);
+}
+
+.envelope-back {
+    background:
+        linear-gradient(145deg, #fffaf0 0%, #ead7b4 56%, #d3b985 100%);
+}
+
+.letter {
+    border-radius: 3px;
+    box-shadow:
+        0 20px 42px rgba(0, 0, 0, 0.30),
+        inset 0 0 0 5px #fffdf7,
+        inset 0 0 0 6px #e7d1a5;
+}
+
+/* Refined page introduction. */
+.wedding-content {
+    max-width: 940px;
+    padding: 48px 30px;
+}
+
+.page-ornament,
+.gold-flourish,
+.details-divider,
+.venue-ornament,
+.gallery-ornament,
+.programme-ornament {
+    text-shadow: 0 0 18px rgba(218, 183, 121, 0.20);
+}
+
+.couple-names {
+    letter-spacing: 0.02em;
+    text-wrap: balance;
+}
+
+.celebration-message,
+.detail-item p,
+.programme-description,
+.gallery-description,
+.rsvp-description,
+.closing-message {
+    text-wrap: pretty;
+}
+
+/* Gentle glass-like panels with consistent corners. */
+.detail-item {
+    flex: 1 1 260px;
+    max-width: 360px;
+    padding: 26px 22px;
+    background: rgba(5, 25, 43, 0.48);
+    border: 1px solid rgba(197, 163, 109, 0.58);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(5px);
+}
+
+.detail-icon {
+    display: inline-flex;
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    border: 1px solid rgba(229, 197, 140, 0.65);
+    border-radius: 50%;
+    background: rgba(197, 163, 109, 0.10);
+}
+
+.venue-card,
+.timeline-content,
+.countdown-box {
+    backdrop-filter: blur(7px);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.22);
+}
+
+.venue-card {
+    border-radius: 14px;
+    padding: 42px 28px;
+}
+
+.timeline-content {
+    border-radius: 10px;
+}
+
+.timeline-content:hover {
+    border-color: var(--gold-light);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+/* Countdown tiles feel more like a luxury event display. */
+.countdown-box {
+    width: 112px;
+    min-height: 108px;
+    border-radius: 12px;
+    background: linear-gradient(
+        145deg,
+        rgba(12, 39, 62, 0.92),
+        rgba(4, 19, 34, 0.88)
+    );
+}
+
+.countdown-box span {
+    text-shadow: 0 0 16px rgba(240, 208, 154, 0.18);
+}
+
+/* Gallery: consistent photo frames and subtle image movement. */
+.gallery-grid {
+    gap: 24px;
+}
+
+.gallery-photo {
+    padding: 9px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #173550, #071b2d);
+}
+
+.gallery-photo img {
+    border-radius: 5px;
+}
+
+.gallery-photo:focus-visible,
+.venue-button:focus-visible,
+.rsvp-button:focus-visible,
+.back-to-top:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 4px;
+}
+
+/* RSVP form: consistent, comfortable controls. */
+#rsvpForm input,
+#rsvpForm select,
+#rsvpForm textarea {
+    min-height: 52px;
+    border-radius: 9px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease,
+                background 0.25s ease;
+}
+
+#rsvpForm input::placeholder,
+#rsvpForm textarea::placeholder {
+    color: #6d6a62;
+    opacity: 0.85;
+}
+
+#rsvpForm input:focus,
+#rsvpForm select:focus,
+#rsvpForm textarea:focus {
+    background: #fffdf8;
+    border-color: var(--gold-deep);
+    box-shadow: 0 0 0 3px rgba(197, 163, 109, 0.18);
+}
+
+.rsvp-button {
+    min-height: 56px;
+    border-radius: 999px;
+    box-shadow: 0 9px 22px rgba(0, 0, 0, 0.20);
+}
+
+.rsvp-button:hover:not(:disabled) {
+    box-shadow: 0 13px 28px rgba(0, 0, 0, 0.28);
+}
+
+/* RSVP status card: clear success/error message area. */
+#rsvpMessage {
+    min-height: 0;
+    padding: 18px 20px;
+    border: 1px solid rgba(198, 163, 106, 0.88);
+    border-radius: 12px;
+    background: linear-gradient(145deg, #fffaf1, #f4e7cf);
+    color: #102b48;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+#rsvpMessage:empty {
+    display: none;
+}
+
+#rsvpMessage strong {
+    color: var(--gold-deep);
+    letter-spacing: 0.02em;
+}
+
+/* Final thank-you section — matching the invitation's visual language. */
+.thankyou-section {
+    width: 100%;
+    max-width: 720px;
+    margin: 55px auto 20px;
+    padding: 42px 28px;
+    border: 1px solid rgba(198, 163, 106, 0.78);
+    border-radius: 16px;
+    background:
+        linear-gradient(145deg, rgba(7, 29, 50, 0.92), rgba(4, 19, 33, 0.94));
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+}
+
+.thankyou-ornament,
+.thankyou-flourish {
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin: 12px 0 24px;
+}
+
+.thankyou-arabic {
+    color: var(--gold-light);
+    font-size: 25px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.thankyou-label {
+    color: var(--champagne);
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.thankyou-section h2 {
+    color: var(--gold-light);
+    font-size: clamp(34px, 5vw, 46px);
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.thankyou-message,
+.thankyou-blessing {
+    max-width: 500px;
+    margin: 16px auto;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.thankyou-names {
+    margin-top: 28px;
+    color: var(--gold-light);
+    font-size: clamp(25px, 4vw, 34px);
+}
+
+.thankyou-names span {
+    color: #fff0d0;
+    font-style: italic;
+    padding: 0 7px;
+}
+
+.thankyou-date {
+    margin-top: 12px;
+    color: var(--champagne);
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.thankyou-section .bottom-ornament {
+    margin: 30px 0 22px;
+}
+
+.back-to-top {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 13px 24px;
+}
+
+/* More comfortable phone layout. */
+@media (max-width: 600px) {
+    .wedding-content {
+        padding: 30px 10px;
+    }
+
+    .detail-item {
+        max-width: none;
+        padding: 22px 16px;
+    }
+
+    .venue-card {
+        padding: 30px 17px;
+    }
+
+    .gallery-grid {
+        gap: 14px;
+    }
+
+    .thankyou-section {
+        margin-top: 38px;
+        padding: 32px 17px;
+        border-radius: 13px;
+    }
+
+    .thankyou-arabic {
+        font-size: 21px;
+    }
+
+    .thankyou-message,
+    .thankyou-blessing {
+        font-size: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-photo,
+    .gallery-photo img,
+    .timeline-content,
+    .rsvp-button {
+        transition: none !important;
+    }
+}
+
+/* PREMIUM GALLERY REFINEMENT */
+
+.gallery-grid {
+    gap: 26px;
+    align-items: stretch;
+}
+
+.gallery-photo {
+    padding: 10px;
+    background: linear-gradient(
+        145deg,
+        rgba(18, 49, 73, 0.96),
+        rgba(4, 19, 34, 0.98)
+    );
+    border: 1px solid #d1b27a;
+    border-radius: 13px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-photo:hover {
+    transform: translateY(-8px);
+    border-color: #f5dfb3;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4);
+}
+
+.gallery-photo img {
+    height: 290px;
+    border-radius: 7px;
+    object-fit: cover;
+}
+
+.photo-caption {
+    color: #f0d09a;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 17px 5px 12px;
+}
+
+.gallery-footer {
+    color: #e9d2a7;
+    letter-spacing: 0.4px;
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        gap: 14px;
+    }
+
+    .gallery-photo img {
+        height: 190px;
+    }
+
+    .photo-caption {
+        font-size: 12px;
+        padding: 12px 3px 9px;
+    }
+}
+
+/* PREMIUM MOBILE COUNTDOWN */
+
+@media screen and (max-width: 600px) {
+
+    .countdown-container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        max-width: 230px;
+        margin: 22px auto;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .countdown-box {
+        width: 100%;
+        min-height: 88px;
+        box-sizing: border-box;
+        border: 1px solid #c6a36a;
+        border-radius: 12px;
+        background: linear-gradient(
+            145deg,
+            rgba(14, 42, 65, 0.96),
+            rgba(4, 19, 34, 0.98)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .countdown-box span {
+        font-size: 28px;
+        color: #f0d09a;
+    }
+
+    .countdown-box p {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+}
