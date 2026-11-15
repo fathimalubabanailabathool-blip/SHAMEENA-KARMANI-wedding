@@ -48,6 +48,7 @@ function openInvitation() {
 
 
 
+
 function submitRSVP(event) {
     event.preventDefault();
 
@@ -68,10 +69,13 @@ function submitRSVP(event) {
     const webAppURL =
         "https://script.google.com/macros/s/AKfycbxAV-CcbQorp7sPAH815zJ9PfEDfeunJu-XYijBOukGbYsR41XZJ0paVd3gLN_iFt5Z/exec";
 
+    const requestId =
+        Date.now() + "_" + Math.random().toString(36).slice(2);
+
     const iframe = document.createElement("iframe");
     const formSender = document.createElement("form");
 
-    const frameName = "rsvpFrame_" + Date.now();
+    const frameName = "rsvpFrame_" + requestId;
 
     iframe.name = frameName;
     iframe.style.display = "none";
@@ -86,7 +90,8 @@ function submitRSVP(event) {
         guestEmail,
         attendance,
         guestCount,
-        guestMessage
+        guestMessage,
+        requestId
     };
 
     Object.entries(fields).forEach(([name, value]) => {
@@ -98,41 +103,43 @@ function submitRSVP(event) {
     });
 
     message.textContent = "Submitting your response...";
+
     const submitButton = form.querySelector('button[type="submit"]');
 
     if (submitButton) {
-    submitButton.disabled = true;
-    submitButton.dataset.originalText = submitButton.innerHTML;
-
-    submitButton.innerHTML = `
-        <span class="loading-spinner"></span>
-        SUBMITTING...
-    `;
-    submitButton.classList.add("is-loading");
-}
+        submitButton.disabled = true;
+        submitButton.dataset.originalText = submitButton.innerHTML;
+        submitButton.innerHTML = `
+            <span class="loading-spinner"></span>
+            SUBMITTING...
+        `;
+        submitButton.classList.add("is-loading");
+    }
 
     document.body.appendChild(iframe);
     document.body.appendChild(formSender);
 
     let completed = false;
 
-   function cleanup() {
-    window.removeEventListener("message", handleResponse);
+    function cleanup() {
+        window.removeEventListener("message", handleResponse);
 
-    formSender.remove();
-    iframe.remove();
+        formSender.remove();
+        iframe.remove();
 
-    if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.innerHTML = submitButton.dataset.originalText;
-        submitButton.classList.remove("is-loading");
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = submitButton.dataset.originalText;
+            submitButton.classList.remove("is-loading");
+        }
     }
-}
-    function handleResponse(event) {
-        if (event.source !== iframe.contentWindow) return;
 
+    function handleResponse(event) {
         if (!event.data ||
-            event.data.type !== "WEDDING_RSVP_RESULT") return;
+            event.data.type !== "WEDDING_RSVP_RESULT" ||
+            event.data.requestId !== requestId) {
+            return;
+        }
 
         completed = true;
         cleanup();
@@ -143,6 +150,7 @@ function submitRSVP(event) {
                 Your RSVP has been successfully recorded.
                 We look forward to celebrating with you!
             `;
+
             form.reset();
 
         } else if (event.data.status === "duplicate") {
@@ -154,7 +162,7 @@ function submitRSVP(event) {
 
         } else {
             message.textContent =
-                "This email address has already been used.";
+                "Sorry, we couldn't save your RSVP. Please try again.";
         }
     }
 
@@ -165,10 +173,11 @@ function submitRSVP(event) {
     setTimeout(() => {
         if (!completed) {
             cleanup();
+
             message.textContent =
-                "Your RSVP has been successfully recorded. We look forward to celebrating with you!";
+                "We couldn't confirm your RSVP. Please check your response before trying again.";
         }
-    }, 15000);
+    }, 20000);
 }
 
 /* =================================
